@@ -1,0 +1,16 @@
+h1{
+    color:goldenrod;
+    text-align: center;
+}
+h2 {
+    color:rebeccapurple;
+    text-align: center;
+}
+h3 {
+    background-color: mediumaquamarine;
+    text-align: center;
+}
+body{ font-family: Verdana; color:rgb(48, 48, 92);}
+div {
+   background-color: khaki;
+}
