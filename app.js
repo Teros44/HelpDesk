@@ -6,10 +6,6 @@ const homeRouter = require("./routes/homeRouter.js");
 app.use("/users", userRouter);
 app.use("/",homeRouter)
 
-// Определяем роутеры
-const userRouter = express.Router(); // для адресов с "/users"
-const homeRouter = express.Router();
-
 app.use(function(request,response,next){
     response.status(404).send("Not found")
 });
