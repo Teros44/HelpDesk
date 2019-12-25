@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 
+
 app.set("view engine", "hbs");
 app.use(bodyParser.urlencoded({extended:false}));
 
