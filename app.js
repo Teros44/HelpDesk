@@ -1,4 +1,5 @@
 ﻿const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/userRouter.js");
@@ -14,4 +15,9 @@ app.use(function(request,response,next){
     response.status(404).send("Not found")
 });
 
-app.listen(3000);
+mongoose.connect("mongodb:/localhost:27017/Node3/HelpDesk/database",{useNewUrlParser: true},function(err){
+    if(err) return console.log(err);
+    app.listen(3000,function(){
+        console.log("Сервер ожидает подключения...");
+    });
+});
