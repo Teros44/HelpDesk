@@ -7,9 +7,9 @@
 <body>
     <h1>Информационная система регистрации обращений</h1>
     <h2>Вход в систему</h2>
-     <form action="authorization" method="POST" required>
+     <form action="/authorization" method="POST" required>
         <label>Логин</label>
-        <input name="login" /><br><br>
+        <input name="login" required/><br><br>
         <label>Пароль</label>
         <input name="password" type="password" required /><br><br>
         <input type="submit" value="Войти" />
@@ -18,7 +18,7 @@
      <h2>Регистрация обращения</h2>
      <form action="createNewSupportRequest" method="POST" required>
         <label>Кабинет</label>
-        <input name="cabinet" /><br><br>
+        <input name="cabinet" placeholder="Укажите номер кабинета" required/><br><br>
         <label>Описание</label>
         <input name="supportRequest" placeholder="Подробно опишите проблему" required /><br><br>
         <input type="submit" value="Отправить запрос" />

@@ -1,4 +1,4 @@
 exports.createSupportRequest = function(request,response){
-
-    response.send("createSupportRequest");
+   console.log("createSupportRequest");
+   response.send("createSupportRequest");
 };
