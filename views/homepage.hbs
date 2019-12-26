@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Техническая поддержка КГБУЗ "ГКП №3" МЗ ХК</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Информационная система регистрации обращений</h1>
+    <h2>Вход в систему</h2>
+     <form action="authorization" method="POST" required>
+        <label>Логин</label>
+        <input name="login" /><br><br>
+        <label>Пароль</label>
+        <input name="password" type="password" required /><br><br>
+        <input type="submit" value="Войти" />
+     </form>
+
+     <h2>Регистрация обращения</h2>
+     <form action="createNewSupportRequest" method="POST" required>
+        <label>Кабинет</label>
+        <input name="cabinet" /><br><br>
+        <label>Описание</label>
+        <input name="supportRequest" placeholder="Подробно опишите проблему" required /><br><br>
+        <input type="submit" value="Отправить запрос" />
+     </form>
+
+
+</body>
+<html>
