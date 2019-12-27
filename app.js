@@ -6,13 +6,35 @@ const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 const supportRequestRouter = require("./routes/supportRequestRouter.js");
 
+const session = require("express-session");
+var MongoDBStore = require('connect-mongodb-session')(session);
+
+app.use(session({
+    store: new MongoDBStore({
+      // MongoDB connection string
+      uri: 'mongodb://localhost:27017/userdb',
+      collection: 'mySessions'
+    }),
+    resave: true,
+    saveUninitialized: true,
+    secret: 'Djrure9hsdf9W',
+    cookie: { maxAge: 36000000 }
+  }));
 
 app.set("view engine", "hbs");
+
+
 app.use(bodyParser.urlencoded({extended:false}));
 
-app.use("/authorization", supportRequestRouter);
-app.use("/users", userRouter);
-app.use("/",homeRouter)
+app.use("/createNewSupportRequest", supportRequestRouter, function(){
+    console.log("/createNewSupportRequest");
+});
+app.use("/users", userRouter, function(){
+    console.log("/users, userRouter");
+});
+app.use("/",homeRouter, function(){
+    console.log("/,homeRouter");
+});
 
 app.use(function(request,response,next){
     response.status(404).send("Not found")
