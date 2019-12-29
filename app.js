@@ -5,25 +5,9 @@ const bodyParser = require("body-parser");
 const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 const supportRequestRouter = require("./routes/supportRequestRouter.js");
-
-const session = require("express-session");
-var MongoDBStore = require('connect-mongodb-session')(session);
-
-app.use(session({
-    store: new MongoDBStore({
-      // MongoDB connection string
-      uri: 'mongodb://localhost:27017/userdb',
-      collection: 'mySessions'
-    }),
-    resave: true,
-    saveUninitialized: true,
-    secret: 'Djrure9hsdf9W',
-    cookie: { maxAge: 36000000 }
-  }));
+//const Cookies = require('cookies');
 
 app.set("view engine", "hbs");
-
-
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.use("/createNewSupportRequest", supportRequestRouter, function(){
@@ -32,7 +16,8 @@ app.use("/createNewSupportRequest", supportRequestRouter, function(){
 app.use("/users", userRouter, function(){
     console.log("/users, userRouter");
 });
-app.use("/",homeRouter, function(){
+app.use("/",homeRouter, function(request,response){
+//    console.log(request.headers['cookie']);
     console.log("/,homeRouter");
 });
 
@@ -42,6 +27,7 @@ app.use(function(request,response,next){
 
 mongoose.connect("mongodb://localhost:27017/usersdb", { useNewUrlParser: true }, function(err){
     if(err) return console.log(err);
+
     app.listen(3000,function(){
         console.log("Сервер ожидает подключения...");
     });
