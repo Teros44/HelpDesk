@@ -29,6 +29,11 @@ app.use(session({
 app.set("view engine", "hbs");
 app.use(bodyParser.urlencoded({extended:false}));
 
+// Создаём новый запрос. Без авторизации
+app.use("/createNewSupportRequest", supportRequestRouter, function(){
+    console.log("/createNewSupportRequest");
+});
+
 app.use('/logoff', function(req, res) {
     req.session.destroy();
     res.redirect('/login');
@@ -55,16 +60,15 @@ app.use('/', function(req, res) {
     }
 });
 
-app.use("/createNewSupportRequest", supportRequestRouter, function(){
-    console.log("/createNewSupportRequest");
-});
+
 app.use("/users", userRouter, function(){
     console.log("/users, userRouter");
 });
+
 app.use("/",homeRouter, function(request,response){
-//    console.log(request.headers['cookie']);
-    console.log("/,homeRouter");
-});
+    //    console.log(request.headers['cookie']);
+        console.log("/,homeRouter");
+    });
 
 app.use(function(request,response,next){
     response.status(404).send("Not found")
