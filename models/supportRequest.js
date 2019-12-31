@@ -1,23 +1,23 @@
-const mongoose = require("mongoose");
+﻿const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 // Установка схемы
 
 const supportRequestScheme = new Schema({
     //Create
-    сreateDate:{ type: Date, default: Date.now },
-    createLocation:{type: String, default: "Undefined"},
-    createUser:{ type: String, default: "Undefined"},
+    сreateDate:{ type: Date},
+    createLocation:{type: String},
+    createUser:{ type: String, default: "Неизвестно"},
     //Problem
-    problemDescription:{type:String, default:"Undefined"},
-    problemType:{type:String, default:"Undefined"},
-    problemPriority:{type:String, default:"Undefined"},
+    problemDescription:{type:String},
+    problemType:{type:String, default:"Не определён"},
+    problemPriority:{type:String, default:"Не определён"},
     //Modifed
-    modifedDate:{ type:Date, default: Date.now },
-    modifedByUser:{ type:String, default: "Undefined"},
+    modifedDate:{ type:Date},
+    modifedByUser:{ type:String},
     //Other
-    Specialist:{type: String, default: "Undefined"},
-    Status:{type:String, default:"Undefined"}
+    Specialist:{type: String, default: "Не назначен"},
+    Status:{type:String, default:"В обработке"}
 });
 
 module.exports = mongoose.model("supportRequest",supportRequestScheme);
