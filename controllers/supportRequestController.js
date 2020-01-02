@@ -7,8 +7,8 @@ exports.createSupportRequest = function(request, response){
     const description = request.body.supportRequestDescription;
     //const user = new supportRequest({name: location, name});
     console.log(now);
-    const sr = new supportRequest({createLocation: location, problemDescription: description,createDate: now.getDate});
-    console.log(sr.createLocation, sr.problemDescription,sr.createUser,sr.createDate);
+    const sr = new supportRequest({createLocation: location, problemDescription: description,сreateDate:now});
+    console.log(sr.createLocation, sr.problemDescription,sr.createUser,sr.сreateDate);
     response.send("support request");
 
      //user.save(function(err){

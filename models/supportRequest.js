@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const supportRequestScheme = new Schema({
     //Create
-    сreateDate:{ type: Date},
+    сreateDate:{type: Date},
     createLocation:{type: String},
     createUser:{ type: String, default: "Неизвестно"},
     //Problem
