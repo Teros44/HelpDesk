@@ -5,14 +5,24 @@ exports.createSupportRequest = function(request, response){
     let now = new Date();
     const location = request.body.location;
     const description = request.body.supportRequestDescription;
-    //const user = new supportRequest({name: location, name});
-    console.log(now);
+   // console.log(now);
     const sr = new supportRequest({createLocation: location, problemDescription: description,сreateDate:now});
     console.log(sr.createLocation, sr.problemDescription,sr.createUser,sr.сreateDate);
-    response.send("support request");
+   // Проверка авторизации
+
+    console.log(request.session);
+    if (request.session.userId > 0) {
+        response.send('Авторизирован. Запрос отправлен')
+      } else {
+        response.send('Заявка успешно отправлена!');
+      }
+
+   
+
+};
+
 
      //user.save(function(err){
     //    if(err) return console.log(err);
    //   response.redirect("/users");
    // });
-};
