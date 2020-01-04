@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost:27017/usersdb", {
 
 app.use(session({
     store: new MongoDBStore({
-      // MongoDB connection string
+      // MongoDB connection string .
       uri: 'mongodb://localhost:27017/usersdb',
       collection: 'mySessions'
     }),
