@@ -9,12 +9,13 @@ exports.createSupportRequest = function(request, response){
     const sr = new supportRequest({createLocation: location, problemDescription: description,сreateDate:now});
     console.log(sr.createLocation, sr.problemDescription,sr.createUser,sr.сreateDate);
    // Проверка авторизации
-
     console.log(request.session);
     if (request.session.userId > 0) {
         response.send('Авторизирован. Запрос отправлен')
       } else {
-        response.send('Заявка успешно отправлена!');
+        console.log(sr);
+        response.render("RequestInfo.hbs", {sr});
+        //response.send('Заявка успешно отправлена!');
       }
 
    

@@ -50,7 +50,7 @@ app.post('/login', function(req, res) {
     console.log(req.session);
     res.end();
 });
-
+/*
 app.use('/', function(req, res) {
     // Usage: get session variable
     if (req.session.userId > 0) {
@@ -59,7 +59,7 @@ app.use('/', function(req, res) {
         res.redirect('/login');
     }
 });
-
+*/
 
 app.use("/users", userRouter, function(){
     console.log("/users, userRouter");

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Техническая поддержка КГБУЗ "ГКП №3" МЗ ХК</title>
+    <meta charset="utf-8" />
+       <style>
+            td{
+
+                border: solid 1px silver; 
+                text-align:left;
+            }
+        </style>
+</head>
+<body>
+  <table>
+      
+            <caption><h2><left>Сведения о заявке № {{sr._id}}</left></h2></caption>
+            <tr>
+                <td>Номер заявки:</td> <td>{{sr._id}}</td> 
+            </tr>
+            </tr>
+                <td>Время создания:</td> <td>{{sr.сreateDate}}</td>
+            </tr>
+            <tr>
+                <td>Кем создана:</td> <td>{{sr.createUser}}</td>
+            </tr>
+            <tr>
+                <td>Кабинет/Расположение:</td> <td>{{sr.createLocation}}</td>
+            </tr>
+            <tr>
+                <td>Тип проблемы:</td> <td>{{sr.problemType}}</td>
+            </tr>
+            <tr>
+                <td>Приоритет выполнения:</td> <td>{{sr.problemType}}</td>
+            </tr>
+            <tr style="background-color:aqua;width: 200px;">
+                <td>Описание проблемы:</td> <td>{{sr.problemDescription}}</td>
+            </tr>
+            <tr>
+                <td>Назначен специалист:</td> <td>{{sr.Specialist}}</td>
+            </tr>
+            <tr>
+                <td>Текущий статус заявки</td><td>{{sr.Status}}</td>
+            </tr>
+
+    </table>
+
+<a href="/"><h2>Вернуться в главное меню</h2></a>
+<a href="/login"><h2>Авторизация в системе</h2></a>
+</body>
+</html>
