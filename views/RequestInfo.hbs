@@ -14,33 +14,33 @@
 <body>
   <table>
       
-            <caption><h2><left>Сведения о заявке № {{sr._id}}</left></h2></caption>
+            <caption><h2><left>Сведения о заявке № {{sRequest._id}}</left></h2></caption>
             <tr>
-                <td>Номер заявки:</td> <td>{{sr._id}}</td> 
+                <td>Номер заявки:</td> <td>{{sRequest._id}}</td> 
             </tr>
             </tr>
-                <td>Время создания:</td> <td>{{sr.сreateDate}}</td>
-            </tr>
-            <tr>
-                <td>Кем создана:</td> <td>{{sr.createUser}}</td>
+                <td>Время создания:</td> <td>{{sRequest.сreateDate}}</td>
             </tr>
             <tr>
-                <td>Кабинет/Расположение:</td> <td>{{sr.createLocation}}</td>
+                <td>Кем создана:</td> <td>{{sRequest.createUser}}</td>
             </tr>
             <tr>
-                <td>Тип проблемы:</td> <td>{{sr.problemType}}</td>
+                <td>Кабинет/Расположение:</td> <td>{{sRequest.createLocation}}</td>
             </tr>
             <tr>
-                <td>Приоритет выполнения:</td> <td>{{sr.problemType}}</td>
+                <td>Тип проблемы:</td> <td>{{sRequest.problemType}}</td>
+            </tr>
+            <tr>
+                <td>Приоритет выполнения:</td> <td>{{sRequest.problemType}}</td>
             </tr>
             <tr style="background-color:aqua;width: 200px;">
-                <td>Описание проблемы:</td> <td>{{sr.problemDescription}}</td>
+                <td>Описание проблемы:</td> <td>{{sRequest.problemDescription}}</td>
             </tr>
             <tr>
-                <td>Назначен специалист:</td> <td>{{sr.Specialist}}</td>
+                <td>Назначен специалист:</td> <td>{{sRequest.Specialist}}</td>
             </tr>
             <tr>
-                <td>Текущий статус заявки</td><td>{{sr.Status}}</td>
+                <td>Текущий статус заявки</td><td>{{sRequest.Status}}</td>
             </tr>
 
     </table>

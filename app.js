@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
+const workSpaceRouter = require("./routes/workSpaceRouter.js");
 const supportRequestRouter = require("./routes/supportRequestRouter.js");
 //const Cookies = require('cookies');
 
@@ -31,7 +32,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 // Создаём новый запрос. Без авторизации
 app.use("/createNewSupportRequest", supportRequestRouter, function(){
-    console.log("/createNewSupportRequest");
+    console.log("[APP] createNewSupportRequest");
 });
 
 app.use('/logoff', function(req, res) {
@@ -48,7 +49,7 @@ app.post('/login', function(req, res) {
     // TODO: select from mongo where login = req.body.login && password = req.body.password
     req.session.userId = 1;
     console.log(req.session);
-    res.end();
+    res.redirect('/workSpace');
 });
 /*
 app.use('/', function(req, res) {
@@ -61,13 +62,16 @@ app.use('/', function(req, res) {
 });
 */
 
+app.use("/workSpace",workSpaceRouter,function(){
+    console.log("[APP] workSpaceRouter");
+});
 app.use("/users", userRouter, function(){
-    console.log("/users, userRouter");
+    console.log("[APP] userRouter");
 });
 
 app.use("/",homeRouter, function(request,response){
     //    console.log(request.headers['cookie']);
-        console.log("/,homeRouter");
+        console.log("[APP] homeRouter");
     });
 
 app.use(function(request,response,next){

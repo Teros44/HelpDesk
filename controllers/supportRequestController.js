@@ -6,15 +6,17 @@ exports.createSupportRequest = function(request, response){
     const location = request.body.location;
     const description = request.body.supportRequestDescription;
    // console.log(now);
-    const sr = new supportRequest({createLocation: location, problemDescription: description,сreateDate:now});
-    console.log(sr.createLocation, sr.problemDescription,sr.createUser,sr.сreateDate);
+    const sRequest = new supportRequest({createLocation: location, problemDescription: description,сreateDate:now});
+   // console.log(sRequest.createLocation, sRequest.problemDescription,sRequest.createUser,sRequest.сreateDate);
    // Проверка авторизации
-    console.log(request.session);
+   // console.log(request.session);
+    sRequest.save(function(err){if(err) return console.log(err);});   
+    
     if (request.session.userId > 0) {
         response.send('Авторизирован. Запрос отправлен')
       } else {
-        console.log(sr);
-        response.render("RequestInfo.hbs", {sr});
+   //     console.log(sRequest);
+        response.render("RequestInfo.hbs", {sRequest});
         //response.send('Заявка успешно отправлена!');
       }
 
@@ -27,3 +29,15 @@ exports.createSupportRequest = function(request, response){
     //    if(err) return console.log(err);
    //   response.redirect("/users");
    // });
+
+   exports.postUser= function(request, response){
+    if(!request.body) return response.sendStatus(400);
+    const userName = request.body.name;
+    const userAge = request.body.age;
+    const user = new User({name: userName, age: userAge});
+     
+    user.save(function(err){
+        if(err) return console.log(err);
+        response.redirect("/users");
+    });
+};
