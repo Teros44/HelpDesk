@@ -7,4 +7,7 @@ supportRequestRouter.use("/",supportRequestController.createSupportRequest,funct
     console.log("[supportRequestRouter] /");
 });
 
+supportRequestRouter.use("/modify",supportRequestController.createSupportRequest,function(){
+    console.log("[supportRequestRouter] /");
+});
 module.exports = supportRequestRouter;

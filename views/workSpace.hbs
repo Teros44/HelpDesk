@@ -6,10 +6,47 @@
 </head>
 <body>
      <table>
-         <tr><th>Имя</th><th>Возраст</th></tr>
+         <tr><th>Номер заявки</th>
+             <th>Дата создания</th>
+             <th>Кабинет/Расположение</th>
+             <th>Создал</th>
+             <th>Описание проблемы</th>
+             <th>Тип проблемы</th>
+             <th>Приоритет проблемы</th>
+             <th>Дата изменения</th>
+             <th>Кем изменено</th>
+             <th>Специалист</th>
+             <th>Статус</th>
+        </tr>
          {{#each supportRequests}}
-            <tr><td>{{this.сreateDate}}</td><td>1</td></tr>
+        <form onclick='showSubmitButton()' action="/createNewSupportRequest/modify" method="POST">
+            <tr><td>{{this._id}}</td>
+                <td>{{this.сreateDate}}</td>
+                <td>{{this.createLocation}}</td>
+                <td>{{this.createUser}}</td>
+                <td>{{this.problemDescription}}</td>
+                <td>
+                    <select onclick='showSubmitButton()'>
+                        <option>{{this.problemType}}</option>
+                        <option>Техническая неисправность</option>
+                        <option>Программный сбой</option>
+                        <option>Другое</option>
+                    </select>
+                </td>
+                <td>{{this.problemPriority}}</td>
+                <td>{{this.modifedDate}}</td>
+                <td>{{this.modifedByUser}}</td>
+                <td>{{this.Specialist}}</td>
+                <td>{{this.Status}}</td>                  
+                <td><input type="submit" value="Сохранить" id="btn"/>
+            </tr>
+        </form>
          {{/each}}
      </table>
+<script type="text/javascript">
+showSubmitButton(){
+btn.value="123";
+};
+</script>
 </body>
 <html>

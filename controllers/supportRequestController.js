@@ -19,9 +19,17 @@ exports.createSupportRequest = function(request, response){
         response.render("RequestInfo.hbs", {sRequest});
         //response.send('Заявка успешно отправлена!');
       }
+};
 
-   
+exports.modify = function(request, response){
 
+    if (request.session.userId > 0) {
+        response.send('Авторизирован. Запрос обновлён')
+      } else {
+   //     console.log(sRequest);
+        response.render("Авторизирован. Запрос не обновлён");
+        //response.send('Заявка успешно отправлена!');
+      }
 };
 
 
