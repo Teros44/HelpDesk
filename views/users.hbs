@@ -8,9 +8,9 @@
     <a href="/users/create">Добавить пользователя</a>
     <h1>Список пользователей</h1>
      <table>
-         <tr><th>Имя</th><th>Возраст</th></tr>
+         <tr><th>ФИО</th><th>Логин</th><th>Пароль</th><th>Администратор</th></tr>
          {{#each users}}
-            <tr><td>{{this.name}}</td><td>{{this.age}}</td></tr>
+            <tr><td>{{this.FIO}}</td><td>{{this.login}}</td><td>{{this.password}}</td><td>{{this.admin}}</td></tr>
          {{/each}}
      </table>
 </body>

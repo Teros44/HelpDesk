@@ -18,9 +18,12 @@ exports.getUsers = function(request, response){
 };
 exports.postUser= function(request, response){
     if(!request.body) return response.sendStatus(400);
-    const userName = request.body.name;
-    const userAge = request.body.age;
-    const user = new User({name: userName, age: userAge});
+    const userFIO = request.body.FIO;
+    const userLogin = request.body.login;
+    const userPassword = request.body.password;
+    const userAdmin = request.body.admin;
+
+    const user = new User({FIO: userFIO, login: userLogin, password: userPassword, admin: userAdmin});
      
     user.save(function(err){
         if(err) return console.log(err);

@@ -5,6 +5,10 @@
     <meta charset="utf-8" />
 </head>
 <body>
+    <h2><a href="/users/create">Управление пользователями</a></h2>
+    <h2>Поиск информации о заявке</h2>
+    <input type='button' value='Нажмите на меня' onclick='showSubmitButton()' />
+
      <table>
          <tr><th>Номер заявки</th>
              <th>Дата создания</th>
@@ -19,14 +23,14 @@
              <th>Статус</th>
         </tr>
          {{#each supportRequests}}
-        <form onclick='showSubmitButton()' action="/createNewSupportRequest/modify" method="POST">
-            <tr><td>{{this._id}}</td>
+        <form id="112" action="/createNewSupportRequest/modify" method="POST">
+            <tr onclick='showSubmitButton()'><td>{{this._id}}</td>
                 <td>{{this.сreateDate}}</td>
                 <td>{{this.createLocation}}</td>
                 <td>{{this.createUser}}</td>
                 <td>{{this.problemDescription}}</td>
                 <td>
-                    <select onclick='showSubmitButton()'>
+                    <select>
                         <option>{{this.problemType}}</option>
                         <option>Техническая неисправность</option>
                         <option>Программный сбой</option>
@@ -44,9 +48,10 @@
          {{/each}}
      </table>
 <script type="text/javascript">
-showSubmitButton(){
-btn.value="123";
-};
+function showSubmitButton()
+{
+alert('123')
+}
 </script>
 </body>
 <html>
