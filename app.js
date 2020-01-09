@@ -8,6 +8,8 @@ const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 const workSpaceRouter = require("./routes/workSpaceRouter.js");
 const supportRequestRouter = require("./routes/supportRequestRouter.js");
+var User = mongoose.model('User');
+
 //const Cookies = require('cookies');
 
 mongoose.connect("mongodb://localhost:27017/usersdb", {
@@ -47,9 +49,28 @@ app.get('/login', function(req, res) {
 app.post('/login', function(req, res) {
     console.log(req.body);
     // TODO: select from mongo where login = req.body.login && password = req.body.password
-    req.session.userId = 1;
-    console.log(req.session);
-    res.redirect('/workSpace');
+
+    User.findOne({login:req.body.login, password:req.body.password}, function(err, currentUser){
+  
+        if(err) {
+            console.log(err);
+            return response.sendStatus(400);
+        }
+        if(currentUser){
+        //    console.log('Найден');
+            req.session.userId = 1;
+            res.render("users.hbs", {
+                users: currentUser
+            });
+        }else{
+        //    console.log('Не найдено');
+            res.render("login.hbs");
+        }
+       
+    });
+
+  //  console.log(req.session);
+  //  res.redirect('/workSpace');
 });
 /*
 app.use('/', function(req, res) {
