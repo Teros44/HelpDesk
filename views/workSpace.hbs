@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <title>Рабочая область</title>
-    <meta charset="utf-8" />
+    <style>
+
+    </style>
 </head>
-<body>
+
+<body onload="loaded()">
+    <div id="items">
+      <div onclick="clicked(1)" class="active">Адын</div>
+    </div>
+    <div id="display">
+    </div>
+
     <h2><a href="/users/create">Управление пользователями</a></h2>
     <h2>Поиск информации о заявке</h2>
-    <input type='button' value='Нажмите на меня' onclick='showSubmitButton()' />
-
      <table>
          <tr><th>Номер заявки</th>
              <th>Дата создания</th>
@@ -23,8 +32,11 @@
              <th>Статус</th>
         </tr>
          {{#each supportRequests}}
+         <script language="javascript">
+             loaded();
+         </script>
         <form id="112" action="/createNewSupportRequest/modify" method="POST">
-            <tr onclick='showSubmitButton()'><td>{{this._id}}</td>
+            <tr><td>{{this._id}}</td>
                 <td>{{this.сreateDate}}</td>
                 <td>{{this.createLocation}}</td>
                 <td>{{this.createUser}}</td>
@@ -47,10 +59,41 @@
         </form>
          {{/each}}
      </table>
-<script type="text/javascript">
-function showSubmitButton()
-{
-alert('123')
+<script language="javascript">
+function loaded() {
+  const items = [
+    { title: 'Дуа', value: '2' },
+    { title: 'Тры', value: '3' },
+    { title: 'Чатырэ', value: '4' },
+    { title: 'Пият', value: '5' },
+    { title: 'Шест', value: '6' },
+    { title: 'Сэм', value: '7' },
+  ];
+  var container = document.getElementById("items");
+
+    var title = document.createElement('h2');
+  title.innerText = 'Все заявки';
+  container.parentElement.insertBefore(title, container);
+  
+  for (const item of items) {
+    let div = document.createElement('div');
+    div.textContent = item.title;
+    div.title = 'Абъясныть за ' + item.title;
+    div.setAttribute('data-value', item.value);
+    div.onclick = () => {
+      clicked(div);
+    }
+    container.appendChild(div);
+  }
+}
+
+function clicked(div) {
+  for (const child of document.getElementById("items").children)
+    child.classList.remove('active');
+    
+  var value = div.getAttribute('data-value');
+  document.getElementById("display").textContent = value;
+  div.classList.add('active');
 }
 </script>
 </body>
