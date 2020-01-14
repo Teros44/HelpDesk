@@ -70,7 +70,8 @@ app.post('/login', function(req, res) {
        
     });
 
-  //  console.log(req.session);
+   console.log(req.session);
+   console.log(req.session.userLogin);
   //  res.redirect('/workSpace');
 });
 /*
@@ -84,7 +85,7 @@ app.use('/', function(req, res) {
 });
 */
 
-app.use("/workSpace",workSpaceRouter,function(){
+app.use("/workspace",workSpaceRouter,function(){
     console.log("[APP] workSpaceRouter");
 });
 app.use("/users", userRouter, function(){

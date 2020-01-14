@@ -4,7 +4,6 @@ exports.addUser = function (request, response){
     response.render("create.hbs");
 };
 exports.getUsers = function(request, response){
-     
     User.find({}, function(err, allUsers){
   
         if(err) {

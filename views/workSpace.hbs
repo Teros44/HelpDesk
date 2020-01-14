@@ -5,96 +5,53 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <title>Рабочая область</title>
     <style>
-
+      #display {
+        line-height: 1.5;
+        letter-spacing: 0.05rem;
+        padding: 1rem;
+        background-color: rgb(30, 119, 192);
+      }
     </style>
 </head>
 
 <body onload="loaded()">
-    <div id="items">
-      <div onclick="clicked(1)" class="active">Адын</div>
-    </div>
-    <div id="display">
-    </div>
-
     <h2><a href="/users/create">Управление пользователями</a></h2>
     <h2>Поиск информации о заявке</h2>
      <table>
          <tr><th>Номер заявки</th>
-             <th>Дата создания</th>
-             <th>Кабинет/Расположение</th>
-             <th>Создал</th>
-             <th>Описание проблемы</th>
-             <th>Тип проблемы</th>
              <th>Приоритет проблемы</th>
-             <th>Дата изменения</th>
-             <th>Кем изменено</th>
-             <th>Специалист</th>
-             <th>Статус</th>
-        </tr>
+         </tr>
          {{#each supportRequests}}
-         <script language="javascript">
-             loaded();
-         </script>
-        <form id="112" action="/createNewSupportRequest/modify" method="POST">
             <tr><td>{{this._id}}</td>
-                <td>{{this.сreateDate}}</td>
-                <td>{{this.createLocation}}</td>
-                <td>{{this.createUser}}</td>
-                <td>{{this.problemDescription}}</td>
-                <td>
-                    <select>
-                        <option>{{this.problemType}}</option>
-                        <option>Техническая неисправность</option>
-                        <option>Программный сбой</option>
-                        <option>Другое</option>
-                    </select>
-                </td>
-                <td>{{this.problemPriority}}</td>
-                <td>{{this.modifedDate}}</td>
-                <td>{{this.modifedByUser}}</td>
-                <td>{{this.Specialist}}</td>
                 <td>{{this.Status}}</td>                  
-                <td><input type="submit" value="Сохранить" id="btn"/>
             </tr>
-        </form>
          {{/each}}
      </table>
-<script language="javascript">
-function loaded() {
-  const items = [
-    { title: 'Дуа', value: '2' },
-    { title: 'Тры', value: '3' },
-    { title: 'Чатырэ', value: '4' },
-    { title: 'Пият', value: '5' },
-    { title: 'Шест', value: '6' },
-    { title: 'Сэм', value: '7' },
-  ];
-  var container = document.getElementById("items");
 
-    var title = document.createElement('h2');
-  title.innerText = 'Все заявки';
-  container.parentElement.insertBefore(title, container);
-  
-  for (const item of items) {
-    let div = document.createElement('div');
-    div.textContent = item.title;
-    div.title = 'Абъясныть за ' + item.title;
-    div.setAttribute('data-value', item.value);
-    div.onclick = () => {
-      clicked(div);
+   <div id="display"></div>
+
+<script>
+function loaded(){
+
+
+  fetch('http://localhost:3000/workspace/getRequests')
+
+  .then(response => response.json()) // преобразуем ответ в json
+
+  .then(data => {
+   // console.log(data) // выводим в консоль результат выполнения response.json()
+    var i = 0
+    while(i<data.length){
+      alert(data[i]._id)
+      i++;
     }
-    container.appendChild(div);
-  }
+    
+  
+  })
+
+  .catch(error => console.error(error))
 }
 
-function clicked(div) {
-  for (const child of document.getElementById("items").children)
-    child.classList.remove('active');
-    
-  var value = div.getAttribute('data-value');
-  document.getElementById("display").textContent = value;
-  div.classList.add('active');
-}
 </script>
 </body>
 <html>
