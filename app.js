@@ -11,6 +11,7 @@ const supportRequestRouter = require("./routes/supportRequestRouter.js");
 var User = mongoose.model('User');
 
 //const Cookies = require('cookies');
+//app.use("/", express.static(__dirname + '/public'));
 
 mongoose.connect("mongodb://localhost:27017/usersdb", {
     useNewUrlParser: true,
@@ -92,8 +93,8 @@ app.use("/users", userRouter, function(){
 
 app.use("/",homeRouter, function(request,response){
     //    console.log(request.headers['cookie']);
-        console.log("[APP] homeRouter");
-    });
+    console.log("[APP] homeRouter");
+});
 
 app.use(function(request,response,next){
     response.status(404).send("Not found")

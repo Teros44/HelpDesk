@@ -1,4 +1,5 @@
 ﻿exports.homePage = function(request,response){
+    //response.render("xhr-basic.hbs");
     response.render("homePage.hbs");
 };
 exports.about = function (request, response) {
