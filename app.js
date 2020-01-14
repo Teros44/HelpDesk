@@ -59,7 +59,7 @@ app.post('/login', function(req, res) {
         }
         if(currentUser){
         //    console.log('Найден');
-            req.session.userId = 1;
+            req.session.userLogin = currentUser.login;
             res.render("users.hbs", {
                 users: currentUser
             });
