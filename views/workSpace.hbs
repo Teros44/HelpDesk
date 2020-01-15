@@ -3,12 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-    <title>Рабочая область</title>
+    <title>Список заявок</title>
     <style>
       #display {
-        line-height: 1.5;
-        letter-spacing: 0.05rem;
-        padding: 1rem;
         background-color: rgb(30, 119, 192);
       }
       .des{
@@ -20,7 +17,7 @@
 
 <body onload="loaded()">
     <h2><a href="/users/create">Управление пользователями</a></h2>
-    <h2>Поиск информации о заявке</h2>
+    <h2>Список заявок</h2>
      <table>
          <tr><th>Номер заявки</th>
              <th>Тип проблемы</th>
@@ -30,8 +27,8 @@
          </tr>
             <tr>
               <td><div id="display"></div></td>
-              <td>Тип прооблемы</td> 
-              <td>Приоритет</td> 
+              <td><div id="displayType"></div></td> 
+              <td><div id="displayPriority"></div></td> 
               <td>
                 <div class="des">Дата создания: </div>
                 <div class="des">Кабинет/Место: </div>
@@ -41,7 +38,7 @@
                 <div class="des">Тип проблемы: </div>
                 <div class="des">Приоритет: </div>
 
-                <div class="des">Псоледнее обновление: </div>
+                <div class="des">Последнее обновление: </div>
                 <div class="des">Кем обновлено: </div>
 
                 <div class="des">Специалист: </div>
@@ -54,19 +51,21 @@
                 <div id="displayCreateUser"></div>
 
                 <div id="displayProblemDescription"></div>
-                <div id="displayProblemType"></div>
-                <div id="displayProblemPriority"></div>
+                <div id="displayProblemType" contenteditable='true'></div>
+                <div id="displayProblemPriority" contenteditable='true'></div>
 
                 <div id="displayModifedDate"></div>
                 <div id="displayModifedByUser"></div>
 
-                <div id="displaySpecialist"></div>
-                <div id="displayStatus"></div>
+                <div id="displaySpecialist" contenteditable='true'></div>
+                <div id="displayStatus" contenteditable='true'></div>
                  </form>
               </td>  
      </table>
 <script>
 var listDisplay = document.getElementById('display');
+var listDisplayType = document.getElementById('displayType');
+var listDisplayPriority = document.getElementById('displayPriority');
 function loaded(){
 
 
@@ -80,7 +79,13 @@ function loaded(){
     var i = 0;
     while(i<data.length){
       let div = document.createElement('div');
+      let div2 = document.createElement('div');
+      let div3 = document.createElement('div');
+
       div.textContent = data[i]._id;
+      div2.textContent = data[i].problemType;
+      div3.textContent = data[i].problemPriority;
+
       div.setAttribute('сreateDate', data[i].сreateDate);
       div.setAttribute('CreateLocation', data[i].createLocation);
       div.setAttribute('CreateUser', data[i].createUser);
@@ -96,7 +101,16 @@ function loaded(){
       div.setAttribute('Status', data[i].Status);
       
       listDisplay.appendChild(div);
+      listDisplayType.appendChild(div2);
+      listDisplayPriority.appendChild(div3);
+
       div.onclick = () => {
+      clicked(div);
+    }
+      div2.onclick = () => {
+      clicked(div);
+    }
+      div3.onclick = () => {
       clicked(div);
     }
      // alert(data[i]._id)
@@ -110,9 +124,12 @@ function loaded(){
 }
 
 function clicked(div) {
-  for (const child of document.getElementById('display').children)
-    child.classList.remove('active');
+ // for (const child of document.getElementById('display').children)
+ //   child.classList.remove('active');
     
+ // var value = div.getAttribute('data-value');
+ // document.getElementById("display").textContent = value;
+ // div.classList.add('active');
  // var problemDescription = div.getAttribute('problemDescription');
  // var сreateDate = div.getAttribute('сreateDate');
 
@@ -129,13 +146,11 @@ function clicked(div) {
   
   document.getElementById("displaySpecialist").textContent = div.getAttribute('Specialist');
   document.getElementById("displayStatus").textContent = div.getAttribute('Status');
-  
-  
-  div.classList.add('active');
+
 }
 
 function postUpdateRequestForm(){
-alert('up');
+//alert('up');
 }
 
 </script>
