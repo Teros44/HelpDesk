@@ -11,6 +11,10 @@
         padding: 1rem;
         background-color: rgb(30, 119, 192);
       }
+      .des{
+          background-color: rgb(160, 214, 173); 
+          text-align:left;
+          }
     </style>
 </head>
 
@@ -19,18 +23,50 @@
     <h2>Поиск информации о заявке</h2>
      <table>
          <tr><th>Номер заявки</th>
-             <th>Приоритет проблемы</th>
+             <th>Тип проблемы</th>
+             <th>Приоритет</th>
+             <th></th>
+             <th>Подробная информация</th>
          </tr>
-         {{#each supportRequests}}
-            <tr><td>{{this._id}}</td>
-                <td>{{this.Status}}</td>                  
-            </tr>
-         {{/each}}
+            <tr>
+              <td><div id="display"></div></td>
+              <td>Тип прооблемы</td> 
+              <td>Приоритет</td> 
+              <td>
+                <div class="des">Дата создания: </div>
+                <div class="des">Кабинет/Место: </div>
+                <div class="des">Кем создано: </div>
+
+                <div class="des">Описание проблемы: </div>
+                <div class="des">Тип проблемы: </div>
+                <div class="des">Приоритет: </div>
+
+                <div class="des">Псоледнее обновление: </div>
+                <div class="des">Кем обновлено: </div>
+
+                <div class="des">Специалист: </div>
+                <div class="des">Статус: </div>
+              </td>
+              <td>
+                <form onclick="postUpdateRequestForm()">
+                <div id="displayCreateDate"></div>
+                <div id="displayCreateLocation"></div>
+                <div id="displayCreateUser"></div>
+
+                <div id="displayProblemDescription"></div>
+                <div id="displayProblemType"></div>
+                <div id="displayProblemPriority"></div>
+
+                <div id="displayModifedDate"></div>
+                <div id="displayModifedByUser"></div>
+
+                <div id="displaySpecialist"></div>
+                <div id="displayStatus"></div>
+                 </form>
+              </td>  
      </table>
-
-   <div id="display"></div>
-
 <script>
+var listDisplay = document.getElementById('display');
 function loaded(){
 
 
@@ -39,10 +75,31 @@ function loaded(){
   .then(response => response.json()) // преобразуем ответ в json
 
   .then(data => {
+    //const json = data.json();
    // console.log(data) // выводим в консоль результат выполнения response.json()
-    var i = 0
+    var i = 0;
     while(i<data.length){
-      alert(data[i]._id)
+      let div = document.createElement('div');
+      div.textContent = data[i]._id;
+      div.setAttribute('сreateDate', data[i].сreateDate);
+      div.setAttribute('CreateLocation', data[i].createLocation);
+      div.setAttribute('CreateUser', data[i].createUser);
+
+      div.setAttribute('problemDescription', data[i].problemDescription);
+      div.setAttribute('ProblemType', data[i].problemType);
+      div.setAttribute('ProblemPriority', data[i].problemPriority);
+
+      div.setAttribute('ModifedDate', data[i].modifedDate);
+      div.setAttribute('ModifedByUser', data[i].modifedByUser);
+
+      div.setAttribute('Specialist', data[i].Specialist);
+      div.setAttribute('Status', data[i].Status);
+      
+      listDisplay.appendChild(div);
+      div.onclick = () => {
+      clicked(div);
+    }
+     // alert(data[i]._id)
       i++;
     }
     
@@ -50,6 +107,35 @@ function loaded(){
   })
 
   .catch(error => console.error(error))
+}
+
+function clicked(div) {
+  for (const child of document.getElementById('display').children)
+    child.classList.remove('active');
+    
+ // var problemDescription = div.getAttribute('problemDescription');
+ // var сreateDate = div.getAttribute('сreateDate');
+
+  document.getElementById("displayCreateDate").textContent = div.getAttribute('сreateDate');
+  document.getElementById("displayCreateLocation").textContent = div.getAttribute('CreateLocation');
+  document.getElementById("displayCreateUser").textContent = div.getAttribute('CreateUser');
+
+  document.getElementById("displayProblemDescription").textContent = div.getAttribute('problemDescription');
+  document.getElementById("displayProblemType").textContent = div.getAttribute('ProblemType');
+  document.getElementById("displayProblemPriority").textContent = div.getAttribute('ProblemPriority');
+
+  document.getElementById("displayModifedDate").textContent = div.getAttribute('ModifedDate');
+  document.getElementById("displayModifedByUser").textContent = div.getAttribute('ModifedByUser');
+  
+  document.getElementById("displaySpecialist").textContent = div.getAttribute('Specialist');
+  document.getElementById("displayStatus").textContent = div.getAttribute('Status');
+  
+  
+  div.classList.add('active');
+}
+
+function postUpdateRequestForm(){
+alert('up');
 }
 
 </script>
