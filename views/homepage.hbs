@@ -7,13 +7,15 @@
 <body>
     <h1>Информационная система регистрации обращений</h1> 
       <a href="/login"><h2>Вход в систему</h2></a>
-     <h2>Регистрация обращения</h2>
+     <fieldset>
+     <legend>Регистрация обращения</legend>
      <form action="/createNewSupportRequest" method="POST" required>
-        <label>Кабинет</label>
+        <label>Кабинет</label></p>
         <input name="location" placeholder="Укажите номер кабинета" required/><br><br>
-        <label>Описание</label>
-        <input name="supportRequestDescription" placeholder="Подробно опишите проблему" required /><br><br>
+        <label>Описание</label></p>
+        <textarea cols="30" rows="7" name="supportRequestDescription" placeholder="Подробно опишите проблему" required></textarea><br><br>
         <input type="submit" value="Отправить запрос" />
      </form>
+     </fieldset>
 </body>
 </html>
