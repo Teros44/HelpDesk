@@ -6,7 +6,10 @@
     <title>Список заявок</title>
     <style>
       #display {
-        background-color: rgb(30, 119, 192);
+       // background-color: rgb(30, 119, 192);
+      }
+      .selectedDisplay:hover{
+        background-color: blueviolet;
       }
       .des{
           background-color: rgb(160, 214, 173); 
@@ -16,7 +19,7 @@
 </head>
 
 <body onload="loaded()">
-    <h2><a href="/users/create">Управление пользователями</a></h2>
+    <h2>{{user.FIO}} [{{user.login}}] <a href="/logoff">[Выход]</a> <a href="/users/create">[Управление пользователями]</a></h2>
     <h2>Список заявок</h2>
      <table>
          <tr><th>Номер заявки</th>
@@ -26,9 +29,9 @@
              <th>Подробная информация</th>
          </tr>
             <tr>
-              <td><div id="display"></div></td>
-              <td><div id="displayType"></div></td> 
-              <td><div id="displayPriority"></div></td> 
+              <td><div id="display" ></div></td>
+              <td><div id="displayType" ></div></td> 
+              <td><div id="displayPriority" ></div></td> 
               <td>
                 <div class="des">Дата создания: </div>
                 <div class="des">Кабинет/Место: </div>
@@ -104,6 +107,7 @@ function loaded(){
       listDisplayType.appendChild(div2);
       listDisplayPriority.appendChild(div3);
 
+      div.classList="selectedDisplay"
       div.onclick = () => {
       clicked(div);
     }

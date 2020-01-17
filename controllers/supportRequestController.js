@@ -11,9 +11,10 @@ exports.createSupportRequest = function(request, response){
    // Проверка авторизации
    // console.log(request.session);
     sRequest.save(function(err){if(err) return console.log(err);});   
-    
-    if (request.session.userId > 0) {
-        response.send('Авторизирован. Запрос отправлен')
+    console.log("[Controller] createSupportRequest")
+    if (request.session.userLogin  !== "0") {
+        console.log(request.session.userLogin);
+        response.send('Авторизирован. Запрос отправлен');
       } else {
    //     console.log(sRequest);
         response.render("RequestInfo.hbs", {sRequest});
@@ -31,12 +32,6 @@ exports.modify = function(request, response){
         //response.send('Заявка успешно отправлена!');
       }
 };
-
-
-     //user.save(function(err){
-    //    if(err) return console.log(err);
-   //   response.redirect("/users");
-   // });
 
    exports.postUser= function(request, response){
     if(!request.body) return response.sendStatus(400);

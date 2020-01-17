@@ -3,13 +3,21 @@
 <head>
     <title>Техническая поддержка КГБУЗ "ГКП №3" МЗ ХК</title>
     <meta charset="utf-8" />
+    <style>
+    .requestForm{
+        background-color: aquamarine;
+    }
+    legend{
+        background-color: azure;
+    }
+    </style>
 </head>
 <body>
     <h1>Информационная система регистрации обращений</h1> 
       <a href="/login"><h2>Вход в систему</h2></a>
-     <fieldset>
+     <fieldset class="requestForm">
      <legend>Регистрация обращения</legend>
-     <form action="/createNewSupportRequest" method="POST" required>
+     <form action="/createNewSupportRequest" method="POST"required>
         <label>Кабинет</label></p>
         <input name="location" placeholder="Укажите номер кабинета" required/><br><br>
         <label>Описание</label></p>

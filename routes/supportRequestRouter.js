@@ -3,7 +3,7 @@ const supportRequestController = require("../controllers/supportRequestControlle
 const supportRequestRouter = express.Router();
 
 
-supportRequestRouter.use("/",supportRequestController.createSupportRequest,function(){
+supportRequestRouter.post("/",supportRequestController.createSupportRequest,function(req,res){
     console.log("[supportRequestRouter] /");
 });
 

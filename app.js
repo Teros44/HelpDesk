@@ -10,9 +10,6 @@ const workSpaceRouter = require("./routes/workSpaceRouter.js");
 const supportRequestRouter = require("./routes/supportRequestRouter.js");
 var User = mongoose.model('User');
 
-//const Cookies = require('cookies');
-//app.use("/", express.static(__dirname + '/public'));
-
 mongoose.connect("mongodb://localhost:27017/usersdb", {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -34,22 +31,25 @@ app.set("view engine", "hbs");
 app.use(bodyParser.urlencoded({extended:false}));
 
 // Создаём новый запрос. Без авторизации
-app.use("/createNewSupportRequest", supportRequestRouter, function(){
+
+app.use("/createNewSupportRequest", supportRequestRouter, function(req,res){
+    console.log(req.session);
     console.log("[APP] createNewSupportRequest");
 });
 
 app.use('/logoff', function(req, res) {
+    console.log("[APP] Logoff")
     req.session.destroy();
     res.redirect('/login');
 });
 
 app.get('/login', function(req, res) {
+    console.log("[APP] Get /login")
     res.render('login');
 });
 
 app.post('/login', function(req, res) {
     console.log(req.body);
-    // TODO: select from mongo where login = req.body.login && password = req.body.password
 
     User.findOne({login:req.body.login, password:req.body.password}, function(err, currentUser){
   
@@ -58,13 +58,11 @@ app.post('/login', function(req, res) {
             return response.sendStatus(400);
         }
         if(currentUser){
-        //    console.log('Найден');
             req.session.userLogin = currentUser.login;
-            res.render("users.hbs", {
-                users: currentUser
+            res.render("workspace.hbs", {
+                user: currentUser
             });
         }else{
-        //    console.log('Не найдено');
             res.render("login.hbs");
         }
        
@@ -72,45 +70,26 @@ app.post('/login', function(req, res) {
 
    console.log(req.session);
    console.log(req.session.userLogin);
-  //  res.redirect('/workSpace');
 });
-/*
-app.use('/', function(req, res) {
-    // Usage: get session variable
-    if (req.session.userId > 0) {
-      req.next();
-    } else {
-        res.redirect('/login');
-    }
-});
-*/
 
-app.use("/workspace",workSpaceRouter,function(){
+app.use("/workspace",workSpaceRouter,function(req,res){
     console.log("[APP] workSpaceRouter");
 });
-app.use("/users", userRouter, function(){
+app.use("/users", userRouter, function(req,res){
     console.log("[APP] userRouter");
 });
 
-app.use("/",homeRouter, function(request,response){
-    //    console.log(request.headers['cookie']);
+app.use("/homepage",homeRouter, function(req,res){
+    console.log(req.session);
     console.log("[APP] homeRouter");
 });
 
-app.use(function(request,response,next){
-    response.status(404).send("Not found")
+app.use(function(req,res,next){
+// res.status(404).send("Not found")
+    console.log('Redirected to homepage | URL: ' + req.url);
+    res.redirect("/homepage");
 });
 
 app.listen(3000,function(){
     console.log("Сервер ожидает подключения...");
 });
-
-/*
-mongoose.connect("mongodb://localhost:27017/usersdb", { useNewUrlParser: true }, function(err){
-    if(err) return console.log(err);
-
-    app.listen(3000,function(){
-        console.log("Сервер ожидает подключения...");
-    });
-});
-*/

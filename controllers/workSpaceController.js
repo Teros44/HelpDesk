@@ -15,8 +15,17 @@ exports.getRequests = function(request, response){
     });
 };
 
-exports.main = function(request, response){
+exports.main = function(req, res){
 
+    console.log(req.session.userLogin);
+    if(req.session.userLogin != "" && req.session.userLogin != undefined ){
+        res.render("workspace.hbs", {
+            user: req.session.userLogin
+        });
+    }else{
+        res.render("login.hbs");
+    }
+    /*
     supportRequest.find({}, function(err, allSupportRequests){
   
         if(err) {
@@ -25,9 +34,8 @@ exports.main = function(request, response){
         }
         console.log('main');
        // console.log(allSupportRequests);
-        response.render("workSpace.hbs", {
-            supportRequests: allSupportRequests
-        });
+        response.render("workSpace.hbs");
     });
+    */
 };
 
