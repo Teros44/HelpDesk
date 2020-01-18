@@ -11,28 +11,50 @@
       .selectedDisplay:hover{
         background-color: blueviolet;
       }
-      .des{
-          background-color: rgb(160, 214, 173); 
-          text-align:left;
-          }
+      .requestList1{
+        font-size: large;
+        float:left;
+        background-color: grey;
+        width: fit-content;
+        height: 80%;
+        overflow: auto;
+      }
+      .requestList2{
+        font-size: x-large;
+        border: 1px solid grey;
+        width:fit-content;
+        overflow: auto;
+      }
+      .requestList3{
+        width: fit-content;
+        overflow: auto;
+      }
+      .requestList4{
+        width:fit-content;
+        overflow: auto;
+      }
+
     </style>
 </head>
 
 <body onload="loaded()">
     <h2>{{user.FIO}} [{{user.login}}] <a href="/logoff">[Выход]</a> <a href="/users/create">[Управление пользователями]</a></h2>
     <h2>Список заявок</h2>
+  <div class="requestList1">
      <table>
-         <tr><th>Номер заявки</th>
+           <tr>
              <th>Тип проблемы</th>
              <th>Приоритет</th>
-             <th></th>
-             <th>Подробная информация</th>
-         </tr>
+           </tr>
             <tr>
-              <td><div id="display" ></div></td>
               <td><div id="displayType" ></div></td> 
               <td><div id="displayPriority" ></div></td> 
-              <td>
+            </tr>
+     </table>
+  </div>
+  <div class="requestList2">
+    <table> <td class="requestList3">
+                <div class="des">ID заявки: </div>
                 <div class="des">Дата создания: </div>
                 <div class="des">Кабинет/Место: </div>
                 <div class="des">Кем создано: </div>
@@ -46,9 +68,10 @@
 
                 <div class="des">Специалист: </div>
                 <div class="des">Статус: </div>
-              </td>
-              <td>
+            </td>
+            <td class="requestList4">
                 <form onclick="postUpdateRequestForm()">
+                <div id="displayID"></div>
                 <div id="displayCreateDate"></div>
                 <div id="displayCreateLocation"></div>
                 <div id="displayCreateUser"></div>
@@ -63,10 +86,11 @@
                 <div id="displaySpecialist" contenteditable='true'></div>
                 <div id="displayStatus" contenteditable='true'></div>
                  </form>
-              </td>  
-     </table>
+            </td>
+    </table>
+ </div>
+
 <script>
-var listDisplay = document.getElementById('display');
 var listDisplayType = document.getElementById('displayType');
 var listDisplayPriority = document.getElementById('displayPriority');
 function loaded(){
@@ -83,12 +107,11 @@ function loaded(){
     while(i<data.length){
       let div = document.createElement('div');
       let div2 = document.createElement('div');
-      let div3 = document.createElement('div');
 
-      div.textContent = data[i]._id;
-      div2.textContent = data[i].problemType;
-      div3.textContent = data[i].problemPriority;
-
+      div.textContent = data[i].problemType;
+      div2.textContent = data[i].problemPriority;
+      
+      div.setAttribute('ID',data[i]._id)
       div.setAttribute('сreateDate', data[i].сreateDate);
       div.setAttribute('CreateLocation', data[i].createLocation);
       div.setAttribute('CreateUser', data[i].createUser);
@@ -103,18 +126,14 @@ function loaded(){
       div.setAttribute('Specialist', data[i].Specialist);
       div.setAttribute('Status', data[i].Status);
       
-      listDisplay.appendChild(div);
-      listDisplayType.appendChild(div2);
-      listDisplayPriority.appendChild(div3);
+      listDisplayType.appendChild(div);
+      listDisplayPriority.appendChild(div2);
 
       div.classList="selectedDisplay"
       div.onclick = () => {
       clicked(div);
     }
       div2.onclick = () => {
-      clicked(div);
-    }
-      div3.onclick = () => {
       clicked(div);
     }
      // alert(data[i]._id)
@@ -128,15 +147,8 @@ function loaded(){
 }
 
 function clicked(div) {
- // for (const child of document.getElementById('display').children)
- //   child.classList.remove('active');
-    
- // var value = div.getAttribute('data-value');
- // document.getElementById("display").textContent = value;
- // div.classList.add('active');
- // var problemDescription = div.getAttribute('problemDescription');
- // var сreateDate = div.getAttribute('сreateDate');
 
+  document.getElementById("displayID").textContent = div.getAttribute('ID');
   document.getElementById("displayCreateDate").textContent = div.getAttribute('сreateDate');
   document.getElementById("displayCreateLocation").textContent = div.getAttribute('CreateLocation');
   document.getElementById("displayCreateUser").textContent = div.getAttribute('CreateUser');

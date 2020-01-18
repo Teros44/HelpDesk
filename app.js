@@ -59,6 +59,7 @@ app.post('/login', function(req, res) {
         }
         if(currentUser){
             req.session.userLogin = currentUser.login;
+            req.session.admin = currentUser.admin;
             res.render("workspace.hbs", {
                 user: currentUser
             });
