@@ -43,7 +43,9 @@
       #modifyButton{
         background-color: rgb(136, 195, 197);
       }
-
+      .modify{
+        background-color: rgb(148, 214, 216);
+      }
     </style>
 </head>
 
@@ -85,24 +87,21 @@
                 <div class="des">Кем обновлено: </div></p>
             </td>
             <td class="requestList4">
-                <form onclick="postUpdateRequestForm()">
                 <div id="displayID"></div>
                 <div id="displayCreateDate"></div>
                 <div id="displayCreateLocation"></div>
                 <div id="displayCreateUser"></div>
 
                 <div id="displayProblemDescription"></div>
-                <div id="displayProblemType" contenteditable='true'></div>
-                <div id="displayProblemPriority" contenteditable='true'></div>
+                <div id="displayProblemType" contenteditable='true' class="modify"></div>
+                <div id="displayProblemPriority" contenteditable='true' class="modify"></div>
 
-                <div id="displaySpecialist" contenteditable='true'></div>
-                <div id="displayStatus" contenteditable='true'></div>
+                <div id="displaySpecialist" contenteditable='true' class="modify"></div>
+                <div id="displayStatus" contenteditable='true' class="modify"></div>
 
                 <div id="displayModifedDate"></div>
                 <div id="displayModifedByUser"></div>
-                <div class="divButton"><input id="modifyButton" type="button" value="Сохранить изменения" hidden/></div>
-                
-                 </form>
+                <div class="divButton"><input id="modifyButton" type="button" value="Сохранить изменения" onclick="modify()" hidden/></div>
             </td>
     </table>
  </div>
@@ -111,6 +110,46 @@
 var listDisplayType = document.getElementById('displayType');
 var listDisplayPriority = document.getElementById('displayPriority');
 
+function modify(){
+
+  alert();
+  fetch('http://localhost:3000/createNewSupportRequest/modify', {
+    method:'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+    });
+};
+
+ /*
+   //Create
+ 
+ _id:document.getElementById('displayID').textContent,
+  problemType:document.getElementById('displayProblemType').textContent,
+  problemPriority:document.getElementById('displayProblemPriority').textContent,
+  modifedDate:document.getElementById('displayModifedDate').textContent,
+  modifedByUser: getElementById('displayModifedByUser').textContent,
+  Specialist: getElementById('displaySpecialist').textContent,
+  Status: getElementById('displayStatus').textContent
+
+    problemType:{type:String, default:"-"},
+    problemPriority:{type:String, default:"Не определён"},
+    //Modifed
+    modifedDate:{ type:Date},
+    modifedByUser:{ type:String},
+    //Other
+    Specialist:{type: String, default: "Не назначен"},
+    Status:{type:String, default:"В обработке"}
+
+                <div id="displayProblemType" contenteditable='true' class="modify"></div>
+                <div id="displayProblemPriority" contenteditable='true' class="modify"></div>
+
+                <div id="displaySpecialist" contenteditable='true' class="modify"></div>
+                <div id="displayStatus" contenteditable='true' class="modify"></div>
+
+                <div id="displayModifedDate"></div>
+                <div id="displayModifedByUser"></div>
+  */
 
 
 function loaded(){
@@ -206,9 +245,6 @@ function clicked(div) {
   document.getElementById("modifyButton").hidden = false;
 }
 
-function postUpdateRequestForm(){
-//alert('up');
-}
 
 </script>
 </body>

@@ -1,4 +1,3 @@
-//const User = require("../models/user.js");
 const supportRequest = require("../models/supportRequest.js");
  
 exports.getRequests = function(request, response){

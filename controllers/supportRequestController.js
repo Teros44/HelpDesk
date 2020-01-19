@@ -23,14 +23,8 @@ exports.createSupportRequest = function(request, response){
 };
 
 exports.modify = function(request, response){
-
-    if (request.session.userId > 0) {
-        response.send('Авторизирован. Запрос обновлён')
-      } else {
-   //     console.log(sRequest);
-        response.render("Авторизирован. Запрос не обновлён");
-        //response.send('Заявка успешно отправлена!');
-      }
+  console.log('[Contoller] Modify');
+ // console.log(request.body.problemType);
 };
 
    exports.postUser= function(request, response){
