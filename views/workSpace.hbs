@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
     <title>Список заявок</title>
+  
     <style>
       #display {
        // background-color: rgb(30, 119, 192);
@@ -33,6 +34,12 @@
         width:fit-content;
         overflow: auto;
       }
+      .divButton{
+        text-align: right;
+      }
+      #modifyButton{
+        background-color: burlywood;
+      }
 
     </style>
 </head>
@@ -40,6 +47,11 @@
 <body onload="loaded()">
     <h2>{{user.FIO}} [{{user.login}}] <a href="/logoff">[Выход]</a> <a href="/users/create">[Управление пользователями]</a></h2>
     <h2>Список заявок</h2>
+      <select onchange="loaded()" id="listFilter">
+        <option value="all">Все заявки</option>
+        <option value="new">Новые</option>
+        <option value="my">Мои</option>
+      </select></p>
   <div class="requestList1">
      <table>
            <tr>
@@ -67,7 +79,7 @@
                 <div class="des">Кем обновлено: </div>
 
                 <div class="des">Специалист: </div>
-                <div class="des">Статус: </div>
+                <div class="des">Статус: </div></p>
             </td>
             <td class="requestList4">
                 <form onclick="postUpdateRequestForm()">
@@ -85,6 +97,8 @@
 
                 <div id="displaySpecialist" contenteditable='true'></div>
                 <div id="displayStatus" contenteditable='true'></div>
+                <div class="divButton"><input id="modifyButton" type="button" value="Сохранить изменения" hidden/></div>
+                
                  </form>
             </td>
     </table>
@@ -93,8 +107,10 @@
 <script>
 var listDisplayType = document.getElementById('displayType');
 var listDisplayPriority = document.getElementById('displayPriority');
-function loaded(){
 
+
+
+function loaded(){
 
   fetch('http://localhost:3000/workspace/getRequests')
 
@@ -104,7 +120,16 @@ function loaded(){
     //const json = data.json();
    // console.log(data) // выводим в консоль результат выполнения response.json()
     var i = 0;
+       if (document.getElementById("listFilter").value == 'all'){
+        alert('all');
+      } else if(document.getElementById("listFilter").value == 'new'){
+        alert('new');
+      } else if(document.getElementById("listFilter").value == 'my'){
+        alert('my');
+      }
+
     while(i<data.length){
+   
       let div = document.createElement('div');
       let div2 = document.createElement('div');
 
@@ -163,6 +188,7 @@ function clicked(div) {
   document.getElementById("displaySpecialist").textContent = div.getAttribute('Specialist');
   document.getElementById("displayStatus").textContent = div.getAttribute('Status');
 
+  document.getElementById("modifyButton").hidden = false;
 }
 
 function postUpdateRequestForm(){

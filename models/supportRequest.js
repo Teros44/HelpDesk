@@ -10,7 +10,7 @@ const supportRequestScheme = new Schema({
     createUser:{ type: String, default: "Неизвестно"},
     //Problem
     problemDescription:{type:String},
-    problemType:{type:String, default:"Не определён"},
+    problemType:{type:String, default:"-"},
     problemPriority:{type:String, default:"Не определён"},
     //Modifed
     modifedDate:{ type:Date},

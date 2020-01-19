@@ -2,7 +2,6 @@
 const supportRequest = require("../models/supportRequest.js");
  
 exports.getRequests = function(request, response){
-
     supportRequest.find({}, function(err, allSupportRequests){
   
         if(err) {

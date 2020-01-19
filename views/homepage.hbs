@@ -6,6 +6,8 @@
     <style>
     .requestForm{
         background-color: aquamarine;
+        height: fit-content;
+        width: fit-content;
     }
     legend{
         background-color: azure;
@@ -18,12 +20,27 @@
      <fieldset class="requestForm">
      <legend>Регистрация обращения</legend>
      <form action="/createNewSupportRequest" method="POST"required>
-        <label>Кабинет</label></p>
+        <label>Укажите кабинет / место:</label></p>
         <input name="location" placeholder="Укажите номер кабинета" required/><br><br>
-        <label>Описание</label></p>
-        <textarea cols="30" rows="7" name="supportRequestDescription" placeholder="Подробно опишите проблему" required></textarea><br><br>
+        <label>Укажите проблемную область:</label></p>
+        <select name="problemType" placeholder="Выберите проблему из списка">
+            <option>-</option>
+            <option>Принтер / МФУ</option>
+            <option>Компьютер</option>
+            <option>Монитор</option>
+            <option>Источник бесперебойного питания</option>
+            <option>Клавиатура</option>
+            <option>Мышка</option>
+            <option>Медиалог</option>
+            <option>Электронная очередь</option>
+            <option>Инфомат (запись к врачам)</option>
+            <option>Другое</option>
+        </select></p>
+        <label>Описание проблемы:</label></p>
+        <textarea cols="80" rows="10" name="supportRequestDescription" placeholder="Подробно опишите проблему" required></textarea><br><br>
         <input type="submit" value="Отправить запрос" />
      </form>
      </fieldset>
+<script></script>
 </body>
 </html>
