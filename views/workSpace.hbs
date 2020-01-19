@@ -50,7 +50,7 @@
       <select onchange="loaded()" id="listFilter">
         <option value="all">Все заявки</option>
         <option value="new">Новые</option>
-        <option value="my">Мои</option>
+        <option value={{user.login}}>Мои</option>
       </select></p>
   <div class="requestList1">
      <table>
@@ -119,19 +119,30 @@ function loaded(){
   .then(data => {
     //const json = data.json();
    // console.log(data) // выводим в консоль результат выполнения response.json()
+
+ 
+  // Зачистка списка запросов
+  while (listDisplayType.firstChild) {
+  listDisplayType.removeChild(listDisplayType.firstChild);
+  }
+  while (listDisplayPriority.firstChild) {
+  listDisplayPriority.removeChild(listDisplayPriority.firstChild);
+  }
+   
     var i = 0;
-       if (document.getElementById("listFilter").value == 'all'){
-        alert('all');
-      } else if(document.getElementById("listFilter").value == 'new'){
-        alert('new');
-      } else if(document.getElementById("listFilter").value == 'my'){
-        alert('my');
-      }
 
     while(i<data.length){
-   
-      let div = document.createElement('div');
-      let div2 = document.createElement('div');
+      if (document.getElementById("listFilter").value == "new" && data[i].Status != 'В обработке'){
+        i++;
+        continue;
+      };
+      if(document.getElementById("listFilter").value != "all" && document.getElementById("listFilter").value != "new" && data[i].Specialist != document.getElementById("listFilter").value){
+        i++;
+        continue;
+      };
+
+     let div = document.createElement('div');
+     let div2 = document.createElement('div');
 
       div.textContent = data[i].problemType;
       div2.textContent = data[i].problemPriority;
@@ -155,6 +166,7 @@ function loaded(){
       listDisplayPriority.appendChild(div2);
 
       div.classList="selectedDisplay"
+      div2.classList="selectedDisplay"
       div.onclick = () => {
       clicked(div);
     }
