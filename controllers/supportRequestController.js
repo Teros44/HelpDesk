@@ -10,14 +10,16 @@ exports.createSupportRequest = function(request, response){
     const sRequest = new supportRequest({createLocation: location, problemDescription: description,сreateDate:now, problemType: pType});
     
     sRequest.save(function(err){if(err) return console.log(err);});   
-    console.log("[Controller] createSupportRequest")
+    console.log("[Controller] createSupportRequest");
+    response.render("RequestInfo.hbs", {sRequest});
     
-    if (request.session.userLogin  !== "0") {
+   /* if (request.session.userLogin  !== "0") {
         console.log(request.session.userLogin);
         response.send('Авторизирован. Запрос отправлен');
       } else {
         response.render("RequestInfo.hbs", {sRequest});
       }
+      */
 };
 
 exports.modify = function(request, response){

@@ -15,22 +15,25 @@
       .requestList1{
         font-size: large;
         float:left;
-        background-color: grey;
+        background-color: rgb(136, 195, 197);
         width: fit-content;
         height: 80%;
         overflow: auto;
       }
       .requestList2{
+        background-color: rgb(136, 195, 197);
         font-size: x-large;
         border: 1px solid grey;
         width:fit-content;
         overflow: auto;
       }
       .requestList3{
+        background-color: rgb(136, 195, 197);
         width: fit-content;
         overflow: auto;
       }
       .requestList4{
+        background-color: rgb(136, 195, 197);
         width:fit-content;
         overflow: auto;
       }
@@ -38,7 +41,7 @@
         text-align: right;
       }
       #modifyButton{
-        background-color: burlywood;
+        background-color: rgb(136, 195, 197);
       }
 
     </style>
@@ -75,11 +78,11 @@
                 <div class="des">Тип проблемы: </div>
                 <div class="des">Приоритет: </div>
 
-                <div class="des">Последнее обновление: </div>
-                <div class="des">Кем обновлено: </div>
-
                 <div class="des">Специалист: </div>
-                <div class="des">Статус: </div></p>
+                <div class="des">Статус: </div>
+                
+                <div class="des">Последнее обновление: </div>
+                <div class="des">Кем обновлено: </div></p>
             </td>
             <td class="requestList4">
                 <form onclick="postUpdateRequestForm()">
@@ -92,11 +95,11 @@
                 <div id="displayProblemType" contenteditable='true'></div>
                 <div id="displayProblemPriority" contenteditable='true'></div>
 
-                <div id="displayModifedDate"></div>
-                <div id="displayModifedByUser"></div>
-
                 <div id="displaySpecialist" contenteditable='true'></div>
                 <div id="displayStatus" contenteditable='true'></div>
+
+                <div id="displayModifedDate"></div>
+                <div id="displayModifedByUser"></div>
                 <div class="divButton"><input id="modifyButton" type="button" value="Сохранить изменения" hidden/></div>
                 
                  </form>
