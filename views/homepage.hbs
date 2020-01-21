@@ -1,46 +1,95 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>Техническая поддержка КГБУЗ "ГКП №3" МЗ ХК</title>
     <meta charset="utf-8" />
-    <style>
-    .requestForm{
-        background-color: aquamarine;
-        height: fit-content;
-        width: fit-content;
-    }
-    legend{
-        background-color: azure;
-    }
+    <style> 
+        body{
+            background-color: white;
+            font-family:'Times New Roman', Times, serif
+        }
+        nav{
+            background-color:rgb(70, 70, 70);
+            text-align: center;
+            color:rgb(242,242,242);
+            height: 20%;
+        }
+        A:link, A:visited, A:active, A:hover { 
+            font-weight: bold; /* Жирное начертание */
+            color: rgb(242,242,242);
+            text-decoration: none; 
+        } 
+        .mainForm{
+            position: fixed; /* or absolute */
+            top: 40%;
+            left: 50%;
+            width: 200px;
+            height:100px;
+            margin: -200px 0 0 -300px;
+        }
+        .requestForm {
+            background-color: rgb(242,242,242);
+            height: 450px;
+            width: 560px;
+            border-radius: 2%;
+            border: 1px solid
+        }
+
+        .submitButton {
+            text-align: right;
+        }
+    
+        .button {
+            font-size: 12px;
+            min-width: 80px;
+            padding: 5px 16px 5px 16px;
+        }
+        .data{
+            width: 220px;
+        }
+        H4{
+            text-align: center;
+        }
     </style>
+
 </head>
+
 <body>
-    <h1>Информационная система регистрации обращений</h1> 
-      <a href="/login"><h2>Вход в систему</h2></a>
-     <fieldset class="requestForm">
-     <legend>Регистрация обращения</legend>
-     <form action="/createNewSupportRequest" method="POST"required>
-        <label>Укажите кабинет / место:</label></p>
-        <input name="location" placeholder="Укажите номер кабинета" required/><br><br>
-        <label>Укажите проблемную область:</label></p>
-        <select name="problemType" placeholder="Выберите проблему из списка">
-            <option>-</option>
-            <option>Принтер / МФУ</option>
-            <option>Компьютер</option>
-            <option>Монитор</option>
-            <option>Источник бесперебойного питания</option>
-            <option>Клавиатура</option>
-            <option>Мышка</option>
-            <option>Медиалог</option>
-            <option>Электронная очередь</option>
-            <option>Инфомат (запись к врачам)</option>
-            <option>Другое</option>
-        </select></p>
-        <label>Описание проблемы:</label></p>
-        <textarea cols="80" rows="10" name="supportRequestDescription" placeholder="Подробно опишите проблему" required></textarea><br><br>
-        <input type="submit" value="Отправить запрос"/>
-     </form>
-     </fieldset>
-<script></script>
+    <nav><h1>Информационная система регистрации обращений</h1>
+    <div><a href="/login">[Вход в систему]</a></div></nav>
+    
+    
+    <div class="mainForm">
+        <fieldset class="requestForm">
+
+            <form action="/createNewSupportRequest" method="POST" required>
+                <h4>РЕГИСТРАЦИЯ ОБРАЩЕНИЯ</h4>
+                <hr></hr>
+                <label>Укажите кабинет / место:</label></p>
+                <input class="data" name="location" placeholder="Укажите номер кабинета" required /><br><br>
+                <label>Укажите проблемную область:</label></p>
+                <select class="data" name="problemType" placeholder="Выберите проблему из списка">
+                    <option>-</option>
+                    <option>Принтер / МФУ</option>
+                    <option>Компьютер</option>
+                    <option>Монитор</option>
+                    <option>Источник бесперебойного питания</option>
+                    <option>Клавиатура</option>
+                    <option>Мышка</option>
+                    <option>Медиалог</option>
+                    <option>Электронная очередь</option>
+                    <option>Инфомат (запись к врачам)</option>
+                    <option>Другое</option>
+                </select></p>
+                <label>Описание проблемы:</label></p>
+                <textarea cols="80" rows="10" name="supportRequestDescription" placeholder="Подробно опишите проблему"
+                    required></textarea><br><br>
+                <div class="submitButton"><input class="button" type="submit" value="Отправить обращение" /></div>
+            </form>
+        </fieldset>
+    </div>
+
 </body>
+
 </html>
