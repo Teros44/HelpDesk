@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>1Техническая поддержка КГБУЗ "ГКП №3" МЗ ХК</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style>
+    .loginFrame{
+
+        border: 6px solid #F1F1F1;
+        padding: 10px;
+        min-width: 380px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -165px 0 0 -200px;
+        background-color: aquamarine;
+    }
+    .divButton{
+        text-align: right;
+    }
+    .button{
+    font-size: 12px;
+    min-width: 80px;
+    padding: 5px 16px 5px 16px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container"><h1>Hello world!</h1></div>
+    <hr/>
+    <fieldset class="loginFrame">
+     <legend>Вход в систему1</legend>
+        <form action="/login" method="POST" required>
+                    <div>Логин: <input name="login" required/></div></p>
+                    <div>Пароль: <input name="password" type="password" required /></div>
+            <div class="divButton">
+                <input type="submit" value="Войти" class="button" />
+            </div>
+            
+        </form>
+    </fieldset>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

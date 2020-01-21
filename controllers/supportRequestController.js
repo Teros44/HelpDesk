@@ -41,7 +41,7 @@ exports.modify = function(request, response) {
         problemType: request.body.problemType,
         problemPriority: request.body.problemPriority,
         modifedDate: now,
-        modifedByUser: request.body.modifedByUser,
+        modifedByUser: request.session.userLogin,
         Specialist: request.body.Specialist,
         Status: request.body.Status
       }
