@@ -12,7 +12,7 @@
       font-family: 'Times New Roman', Times, serif
     }
 
-    nav{
+    nav {
       background-color: rgb(70, 70, 70);
       text-align: center;
       color: rgb(242, 242, 242);
@@ -28,6 +28,24 @@
       text-decoration: none;
     }
 
+    .mainForm {
+      position: fixed;
+      /* or absolute */
+      top: 35%;
+      left: 50%;
+      width: 350px;
+      height: 850px;
+      margin: -175px 0 0 -425px;
+    }
+
+    .requestForm {
+      background-color: rgb(242, 242, 242);
+      height: 450px;
+      width: 850px;
+      border-radius: 2%;
+      border: 1px solid
+    }
+
     #display {
       // background-color: rgb(30, 119, 192);
     }
@@ -37,31 +55,28 @@
     }
 
     .requestList1 {
+      background-color: rgb(242, 242, 242);
       font-size: large;
       float: left;
-      background-color: rgb(136, 195, 197);
-      width: fit-content;
-      height: 80%;
-      overflow: auto;
+      width: 300px;
+      height: 350px;
+      overflow: scroll;
     }
 
     .requestList2 {
-      background-color: rgb(136, 195, 197);
-      font-size: x-large;
-      border: 1px solid grey;
-      width: fit-content;
+      background-color: rgb(242, 242, 242);
+      font-size: large;
+      width: 550px;
       overflow: auto;
     }
 
     .requestList3 {
-      background-color: rgb(136, 195, 197);
-      width: fit-content;
+      width: 250px;
       overflow: auto;
     }
 
     .requestList4 {
-      background-color: rgb(136, 195, 197);
-      width: fit-content;
+      width: 300px;
       overflow: auto;
     }
 
@@ -69,84 +84,101 @@
       text-align: right;
     }
 
-    #modifyButton {
-      background-color: rgb(136, 195, 197);
+    H4 {
+      text-align: center;
     }
 
+    #loginDiv {
+      text-align: right;
+      color: rgb(70, 70, 70);
+    }
+
+    #modifyButton {}
+
     .modify {
-      background-color: rgb(148, 214, 216);
+      color:brown
     }
   </style>
 </head>
 
 <body onload="loaded()">
-  <nav><h1>Информационная система поддержки пользователей</h1>
-        
-        <div><a href="/homepage">[Домашняя страница]</a> <a href="/users/create">[Новый пользователь]</a> <a href="/users">[Список пользователей]</a> <a href="/logoff">[Изменение пользователя]</a></div></nav>
-  
-  <div id="loginDiv">{{user.FIO}} [{{user.login}}] <a href="/logoff">[Выход]</a>
-  <h2>Список заявок</h2>
-  <select onchange="loaded()" id="listFilter">
-    <option value="all">Все заявки</option>
-    <option value="new">Новые</option>
-    <option value={{user.login}}>Мои</option>
-  </select>
+  <nav>
+    <h1>Информационная система поддержки пользователей</h1>
+
+    <div><a href="/homepage">[Домашняя страница]</a> <a href="/users/create">[Новый пользователь]</a> <a
+        href="/users">[Список пользователей]</a> <a href="/logoff">[Изменение пользователя]</a> <a href="/logoff">[Выход]</a></div>
+  </nav>
+
+  <div id="loginDiv">{{user.FIO}} [{{user.login}}] 
   </div>
   </p>
-  <div class="requestList1">
-    <table>
-      <tr>
-        <th>Тип проблемы</th>
-        <th>Приоритет</th>
-      </tr>
-      <tr>
-        <td>
-          <div id="displayType"></div>
-        </td>
-        <td>
-          <div id="displayPriority"></div>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="requestList2">
-    <table>
-      <td class="requestList3">
-        <div class="des">ID заявки: </div>
-        <div class="des">Дата создания: </div>
-        <div class="des">Кабинет/Место: </div>
-        <div class="des">Кем создано: </div>
 
-        <div class="des">Описание проблемы: </div>
-        <div class="des">Тип проблемы: </div>
-        <div class="des">Приоритет: </div>
+  <div class="mainForm">
+    <fieldset class="requestForm">
+      <h4>СПИСОК ЗАЯВОК</h4>
+      <select onchange="loaded()" id="listFilter">
+        <option value="all">Все заявки</option>
+        <option value="new">Новые</option>
+        <option value={{user.login}}>Мои</option>
+      </select>
+      <hr>
+      </hr>
+      <div class="requestList1">
+        <table>
+          <tr>
+            <th>Тип проблемы</th>
+            <th>Приоритет</th>
+          </tr>
+          <tr>
+            <td>
+              <div id="displayType"></div>
+            </td>
+            <td>
+              <div id="displayPriority"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="requestList2">
+        <table>
+          <td class="requestList3">
+            <div class="des">ID заявки: </div>
+            <div class="des">Дата создания: </div>
+            <div class="des">Кабинет/Место: </div>
+            <div class="des">Кем создано: </div>
 
-        <div class="des">Специалист: </div>
-        <div class="des">Статус: </div>
+            <div class="des">Описание проблемы: </div>
+            <div class="des">Тип проблемы: </div>
+            <div class="des">Приоритет: </div>
 
-        <div class="des">Последнее обновление: </div>
-        <div class="des">Кем обновлено: </div>
-        </p>
-      </td>
-      <td class="requestList4">
-        <div id="displayID"></div>
-        <div id="displayCreateDate"></div>
-        <div id="displayCreateLocation"></div>
-        <div id="displayCreateUser"></div>
+            <div class="des">Специалист: </div>
+            <div class="des">Статус: </div>
 
-        <div id="displayProblemDescription"></div>
-        <div id="displayProblemType" contenteditable='true' class="modify"></div>
-        <div id="displayProblemPriority" contenteditable='true' class="modify"></div>
+            <div class="des">Последнее обновление: </div>
+            <div class="des">Кем обновлено: </div>
+            </p>
+          </td>
+          <td class="requestList4">
+            <div id="displayID"></div>
+            <div id="displayCreateDate"></div>
+            <div id="displayCreateLocation"></div>
+            <div id="displayCreateUser"></div>
 
-        <div id="displaySpecialist" contenteditable='true' class="modify"></div>
-        <div id="displayStatus" contenteditable='true' class="modify"></div>
+            <div id="displayProblemDescription"></div>
+            <div id="displayProblemType" contenteditable='true' class="modify"></div>
+            <div id="displayProblemPriority" contenteditable='true' class="modify"></div>
 
-        <div id="displayModifedDate"></div>
-        <div id="displayModifedByUser"></div>
-        <div class="divButton"><input id="modifyButton" type="button" value="Сохранить изменения" onclick="modify()"
-            hidden /></div>
-      </td>
-    </table>
+            <div id="displaySpecialist" contenteditable='true' class="modify"></div>
+            <div id="displayStatus" contenteditable='true' class="modify"></div>
+
+            <div id="displayModifedDate"></div>
+            <div id="displayModifedByUser"></div>
+            <div class="divButton"><input id="modifyButton" type="button" value="Сохранить изменения" onclick="modify()"
+                hidden /></div>
+          </td>
+        </table>
+      </div>
+    </fieldset>
   </div>
 
 
