@@ -1,45 +1,88 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Техническая поддержка КГБУЗ "ГКП №3" МЗ ХК</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <style>
-    .loginFrame{
+        body {
+            background-color: white;
+            font-family: 'Times New Roman', Times, serif
+        }
 
-        border: 6px solid #F1F1F1;
-        padding: 10px;
-        min-width: 380px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -165px 0 0 -200px;
-        background-color: aquamarine;
-    }
-    .divButton{
-        text-align: right;
-    }
-    .button{
-    font-size: 12px;
-    min-width: 80px;
-    padding: 5px 16px 5px 16px;
-    }
+        nav {
+            background-color: rgb(70, 70, 70);
+            text-align: center;
+            color: rgb(242, 242, 242);
+            height: 20%;
+        }
+
+        A:link,
+        A:visited,
+        A:active,
+        A:hover {
+            font-weight: bold;
+            /* Жирное начертание */
+            color: rgb(242, 242, 242);
+            text-decoration: none;
+        }
+
+        .mainForm {
+            position: fixed;
+            /* or absolute */
+            top: 40%;
+            left: 50%;
+            width: 210px;
+            height: 150px;
+            margin: -75px 0 0 -105px;
+        }
+
+        .loginForm {
+            background-color: rgb(242, 242, 242);
+            height: 210px;
+            width: 150px;
+            border-radius: 2%;
+            border: 1px solid
+        }
+
+        .divButton {
+            text-align: right;
+        }
+
+        .button {
+            font-size: 12px;
+            min-width: 80px;
+            padding: 5px 16px 5px 16px;
+        }
+
+        H4 {
+            text-align: center;
+        }
     </style>
 </head>
-<body><div class="container"><h1>КГБУЗ "Городская клиническая поликлиника №3" МЗ ХК</h1></div>
-    
-    <hr/>
-    <fieldset class="loginFrame">
-     <legend>Вход в систему</legend>
-        <form action="/login" method="POST" required>
-                    <div>Логин: <input name="login" required/></div></p>
-                    <div>Пароль: <input name="password" type="password" required /></div>
-            <div class="divButton">
-                <input type="submit" value="Войти" class="button" />
-            </div>
-            
-        </form>
-    </fieldset>
-<script src="../js/bootstrap.min.js"></script>
+
+<body>
+    <nav>
+        <h1>Информационная система поддержки пользователей</h1>
+        <div><a href="/homepage">[Домашняя страница]</a></div>
+    </nav>
+    <div class="mainForm">
+        <fieldset class="loginForm">
+            <h4>АВТОРИЗАЦИЯ</h4>
+            <hr>
+            </hr>
+            <form action="/login" method="POST" required>
+                <div>Логин: <input name="login" required /></div>
+                </p>
+                <div>Пароль: <input name="password" type="password" required /></div>
+                </p>
+                <div class="divButton">
+                    <input type="submit" value="Войти" class="button" />
+                </div>
+
+            </form>
+        </fieldset>
+    </div>
 </body>
+
 </html>

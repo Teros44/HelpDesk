@@ -7,6 +7,27 @@
   <title>Список заявок</title>
 
   <style>
+    body {
+      background-color: white;
+      font-family: 'Times New Roman', Times, serif
+    }
+
+    nav{
+      background-color: rgb(70, 70, 70);
+      text-align: center;
+      color: rgb(242, 242, 242);
+      height: 20%;
+    }
+
+    A:link,
+    A:visited,
+    A:active,
+    A:hover {
+      font-weight: bold;
+      color: rgb(242, 242, 242);
+      text-decoration: none;
+    }
+
     #display {
       // background-color: rgb(30, 119, 192);
     }
@@ -59,14 +80,19 @@
 </head>
 
 <body onload="loaded()">
-  <h2>{{user.FIO}} [{{user.login}}] <a href="/logoff">[Выход]</a> <a href="/users/create">[Управление
-      пользователями]</a></h2>
+  <nav><h1>Информационная система поддержки пользователей</h1>
+        
+        <div><a href="/homepage">[Домашняя страница]</a> <a href="/users/create">[Новый пользователь]</a> <a href="/users">[Список пользователей]</a> <a href="/logoff">[Изменение пользователя]</a></div></nav>
+  
+  <div id="loginDiv">{{user.FIO}} [{{user.login}}] <a href="/logoff">[Выход]</a>
   <h2>Список заявок</h2>
   <select onchange="loaded()" id="listFilter">
     <option value="all">Все заявки</option>
     <option value="new">Новые</option>
     <option value={{user.login}}>Мои</option>
-  </select></p>
+  </select>
+  </div>
+  </p>
   <div class="requestList1">
     <table>
       <tr>
@@ -117,11 +143,12 @@
 
         <div id="displayModifedDate"></div>
         <div id="displayModifedByUser"></div>
-        <div class="divButton"><input id="modifyButton" type="button" value="Сохранить изменения" onclick="modify()" hidden/></div>
+        <div class="divButton"><input id="modifyButton" type="button" value="Сохранить изменения" onclick="modify()"
+            hidden /></div>
       </td>
     </table>
   </div>
-  
+
 
   <script>
     var listDisplayType = document.getElementById('displayType');
@@ -130,8 +157,8 @@
     function modify(userLogin) {
 
       let modifyJson = {
-        _id: document.getElementById('displayID').textContent, 
-        problemType: document.getElementById('displayProblemType').textContent, 
+        _id: document.getElementById('displayID').textContent,
+        problemType: document.getElementById('displayProblemType').textContent,
         problemPriority: document.getElementById('displayProblemPriority').textContent,
         Specialist: document.getElementById('displaySpecialist').textContent,
         Status: document.getElementById('displayStatus').textContent
@@ -148,7 +175,7 @@
       fetch('http://localhost:3000/createNewSupportRequest/modify', options)
         .then(res => res.json())
         .then(res => console.log(res));
-      
+
       loaded();
     };
 
