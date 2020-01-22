@@ -1,17 +1,81 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>Список пользователей</title>
     <meta charset="utf-8" />
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Times New Roman', Times, serif
+        }
+
+        nav {
+            background-color: rgb(70, 70, 70);
+            text-align: center;
+            color: rgb(242, 242, 242);
+            height: 20%;
+        }
+
+        .mainForm {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            width: 400px;
+            height: fit-content;
+            margin: -200px 0 0 -200px;
+        }
+
+        .usersForm {
+            background-color: rgb(242, 242, 242);
+            height: fit-content;
+            width: 400px;
+            border-radius: 2%;
+            border: 1px solid
+        }
+
+        A:link,
+        A:visited,
+        A:active,
+        A:hover {
+            font-weight: bold;
+            /* Жирное начертание */
+            color: rgb(242, 242, 242);
+            text-decoration: none;
+        }
+
+        H4 {
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-    <a href="/users/create">Добавить пользователя</a>
-    <h1>Список пользователей</h1>
-     <table>
-         <tr><th>ФИО</th><th>Логин</th><th>Пароль</th><th>Администратор</th></tr>
-         {{#each users}}
-            <tr><td>{{this.FIO}}</td><td>{{this.login}}</td><td>{{this.password}}</td><td>{{this.admin}}</td></tr>
-         {{/each}}
-     </table>
+    <nav>
+        <h1>Информационная система поддержки пользователей</h1>
+        <div><a href="/homepage">[Домашняя страница]</a> <a href="/users/create">[Новый пользователь]</a> <a
+                href="/logoff">[Изменение пользователя]</a></div>
+    </nav>
+    <div class="mainForm">
+        <fieldset class="usersForm">
+            <h4>СПИСОК ПОЛЬЗОВАТЕЛЕЙ</h4>
+            <hr>
+            </hr>
+            <table>
+                <tr>
+                    <th>ФИО</th>
+                    <th>Логин</th>
+                    <th>Администратор</th>
+                </tr>
+                {{#each users}}
+                <tr>
+                    <td>{{this.FIO}}</td>
+                    <td>{{this.login}}</td>
+                    <td>{{this.admin}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </fieldset>
+    </div>
 </body>
 <html>

@@ -5,7 +5,7 @@ exports.addUser = function (request, response){
 };
 exports.getUsers = function(request, response){
     console.log(request.session);
-    console.log(request.session.Admin);
+    console.log(request.session.admin);
     if(request.session.admin=="Да"){
         User.find({}, function(err, allUsers){
   

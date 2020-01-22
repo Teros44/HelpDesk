@@ -96,7 +96,7 @@
     #modifyButton {}
 
     .modify {
-      color:brown
+      color: brown
     }
   </style>
 </head>
@@ -106,10 +106,11 @@
     <h1>Информационная система поддержки пользователей</h1>
 
     <div><a href="/homepage">[Домашняя страница]</a> <a href="/users/create">[Новый пользователь]</a> <a
-        href="/users">[Список пользователей]</a> <a href="/logoff">[Изменение пользователя]</a> <a href="/logoff">[Выход]</a></div>
+        href="/users">[Список пользователей]</a> <a href="/logoff">[Изменение пользователя]</a> <a
+        href="/logoff">[Выход]</a></div>
   </nav>
 
-  <div id="loginDiv">{{user.FIO}} [{{user.login}}] 
+  <div id="loginDiv">{{user.FIO}} [{{user.login}}]
   </div>
   </p>
 
@@ -186,7 +187,7 @@
     var listDisplayType = document.getElementById('displayType');
     var listDisplayPriority = document.getElementById('displayPriority');
 
-    function modify(userLogin) {
+    function modify() {
 
       let modifyJson = {
         _id: document.getElementById('displayID').textContent,
@@ -275,7 +276,6 @@
             div2.onclick = () => {
               clicked(div);
             }
-            // alert(data[i]._id)
             i++;
           }
 
@@ -283,6 +283,7 @@
         })
 
         .catch(error => console.error(error))
+      clearInfo();
     }
 
     function clicked(div) {
@@ -306,6 +307,26 @@
 
     }
 
+    function clearInfo(div) {
+
+      document.getElementById("displayID").textContent = '';
+      document.getElementById("displayCreateDate").textContent = '';
+      document.getElementById("displayCreateLocation").textContent = '';
+      document.getElementById("displayCreateUser").textContent = '';
+
+      document.getElementById("displayProblemDescription").textContent = '';
+      document.getElementById("displayProblemType").textContent = '';
+      document.getElementById("displayProblemPriority").textContent = '';
+
+      document.getElementById("displayModifedDate").textContent = '';
+      document.getElementById("displayModifedByUser").textContent = '';
+
+      document.getElementById("displaySpecialist").textContent = '';
+      document.getElementById("displayStatus").textContent = '';
+
+      document.getElementById("modifyButton").hidden = true;
+
+    }
 
   </script>
 </body>

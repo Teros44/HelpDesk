@@ -8,9 +8,9 @@ homeRouter.use("/createNewSupportRequest", supportRequestRouter, function(req,re
     console.log("[APP] createNewSupportRequest");
 });
 */
-homeRouter.post('/login', homeController.login,function(req,res){
+/*homeRouter.post('/login', homeController.login,function(req,res){
     console.log("[homeRouter] /login");
-});
+});*/
 homeRouter.get("/about",homeController.about,function(req,res){
     console.log("[homeRouter] /about");
 });

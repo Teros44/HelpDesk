@@ -19,14 +19,6 @@ exports.createSupportRequest = function(request, response) {
   });
   console.log("[Controller] createSupportRequest");
   response.render("RequestInfo.hbs", { sRequest });
-
-  /* if (request.session.userLogin  !== "0") {
-        console.log(request.session.userLogin);
-        response.send('Авторизирован. Запрос отправлен');
-      } else {
-        response.render("RequestInfo.hbs", {sRequest});
-      }
-      */
 };
 
 exports.modify = function(request, response) {
@@ -54,15 +46,6 @@ exports.modify = function(request, response) {
       console.log(uRequest);
     }
   );
-  /*  mRequest.updateOne({_id: request.body._id},
-      {$set:{problemType: request.body.problemType,
-        problemPriority: request.body.problemPriority,
-        modifedDate: request.body.modifedDate,
-        modifedByUser: request.body.modifedByUser,
-        Specialist: request.body.Specialist,
-        Status: request.body.Status}});
-      // db.users.update({name : "Tom", age: 29}, {$set: {age : 30}})1
-        */
 };
 
 exports.postUser = function(request, response) {
