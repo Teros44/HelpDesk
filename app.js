@@ -33,7 +33,6 @@ app.set("view engine", "hbs");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // Для парсинга json
 
-// Создаём новый запрос. Без авторизации
 
 app.use("/createNewSupportRequest", supportRequestRouter, function(req, res) {
   console.log(req.session);
