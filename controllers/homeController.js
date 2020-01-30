@@ -4,8 +4,3 @@
 exports.about = function (request, response) {
     response.send("О сайте");
 };
-/*
-exports.login = function(request,response){
-    response.send(request.body);
-};
-*/

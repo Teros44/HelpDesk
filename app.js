@@ -89,7 +89,6 @@ app.use("/homepage", homeRouter, function(req, res) {
 });
 
 app.use(function(req, res, next) {
-  // res.status(404).send("Not found")
   console.log("Redirected to homepage | URL: " + req.url);
   res.redirect("/homepage");
 });
